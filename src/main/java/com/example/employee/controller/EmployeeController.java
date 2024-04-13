@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/employees")
@@ -19,7 +20,7 @@ public class EmployeeController {
         return employeeService.getAllEmployees();
     }
     @GetMapping("/{id}")
-    public Employee getEmployeeById(@PathVariable Long id) {
+    public Optional<Employee> getEmployeeById(@PathVariable Long id) {
         return employeeService.getEmployeeById(id);
     }
 
