@@ -1,21 +1,24 @@
 package com.example.employee.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Employee {
+    @Id
     private Long id;
     private String firstName;
     private String lastName;
     private String email;
-    private Department department;
 
     //Constructor created
     public Employee() {}
 
-    public Employee(Long id, String firstName, String lastName, String email, Department department) {
+    public Employee(Long id, String firstName, String lastName, String email) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.department = department;
     }
 
     // Getter and setter methods
@@ -51,14 +54,6 @@ public class Employee {
         this.email = email;
     }
 
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
-    }
-
     // ToString method created
     @Override
     public String toString() {
@@ -67,7 +62,6 @@ public class Employee {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", department=" + department +
                 '}';
     }
 }
