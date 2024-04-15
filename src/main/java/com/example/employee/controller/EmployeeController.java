@@ -1,43 +1,26 @@
 package com.example.employee.controller;
 
 import com.example.employee.entity.Employee;
-import com.example.employee.service.EmployeeService;
+import com.example.employee.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequestMapping("/employees")
+@RequestMapping("/api/employees")
 public class EmployeeController {
 
     @Autowired
-    private EmployeeService employeeService;
+    private EmployeeRepository employeeRepository;
 
     @GetMapping
     public List<Employee> getAllEmployees() {
-        return employeeService.getAllEmployees();
-    }
-    @GetMapping("/{id}")
-    public Optional<Employee> getEmployeeById(@PathVariable Long id) {
-        return employeeService.getEmployeeById(id);
+        return employeeRepository.findAll();
     }
 
     @PostMapping
-    public void addEmployee(@RequestBody Employee employee) {
-        employeeService.addEmployee(employee);
+    public Employee addEmployee(@RequestBody Employee employee) {
+        return employeeRepository.save(employee);
     }
-
-    @PutMapping("/{id}")
-    public void updateEmployee(@PathVariable Long id, @RequestBody Employee employee) {
-        employee.setId(id);
-        employeeService.updateEmployee(employee);
-    }
-
-    @DeleteMapping("/{id}")
-    public void deleteEmployee(@PathVariable Long id) {
-        employeeService.deleteEmployee(id);
-    }
-
 }
